@@ -3,8 +3,9 @@ import importlib.util
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtCore import QProcess
-import subprocess
 import os
+import requests
+from config import license_key
 
 class App(QtWidgets.QMainWindow):
     def __init__(self):
@@ -100,8 +101,58 @@ class App(QtWidgets.QMainWindow):
             config_file.write("# IBKR connect\n")
             config_file.write(f"ib_config = {{'port': {int(self.txtPort.text())}, 'ip': '{self.txtIp.text()}', 'clientId': {int(self.txtClientId.text())}}}\n")
 
+    # def run_script(self):
+    #     # Check if a script file is selected
+    #     if self.rdIsland.isChecked():
+    #         script_path = self.islandPath
+    #     elif self.rdLiveIBKR.isChecked():
+    #         script_path = self.liveIBKRPath
+    #     else:
+    #         QMessageBox.critical(self, "Error", "Please select a script file.")
+    #         return
+
+    #     # Clear the output text box
+    #     self.txtOutput.clear()
+
+    #     # Create a QProcess object
+    #     self.process = QProcess(self)
+
+    #     # Connect the process output to the slot that will update the text box
+    #     self.process.readyReadStandardOutput.connect(self.on_ready_read_standard_output)
+    #     self.process.readyReadStandardError.connect(self.on_ready_read_standard_error)
+
+    #     # Start the process
+    #     self.process.start(sys.executable, [script_path])
+
+
+    # Upper code was given by client and below one is mine in which i added an api which fetches license keys and match that with the license key in the config.py and after that it run the script but i tried to run the script with the upper run func but i was getting errors
+
     def run_script(self):
-        # Check if a script file is selected
+        api_url = "https://backend.ntstrading.com/api/getAllCustomers"
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            api_data = response.json()
+
+            print("API Data Received:", api_data)
+
+            client_ids = api_data.get('licenseKeys', [])
+            if not client_ids:
+                QMessageBox.critical(self, "Error", "No license keys found in API response.")
+                return
+
+            # Checking license_key from config.py instead of UI text field
+            if license_key not in client_ids:
+                QMessageBox.critical(self, "Error", "Invalid license key. Please check config.py.")
+                return
+
+        except requests.RequestException as e:
+            QMessageBox.critical(self, "Error", f"Failed to fetch data from API: {e}")
+            return
+        except ValueError:
+            QMessageBox.critical(self, "Error", "Invalid JSON response from API.")
+            return
+
         if self.rdIsland.isChecked():
             script_path = self.islandPath
         elif self.rdLiveIBKR.isChecked():
@@ -110,18 +161,26 @@ class App(QtWidgets.QMainWindow):
             QMessageBox.critical(self, "Error", "Please select a script file.")
             return
 
-        # Clear the output text box
+        if not os.path.exists(script_path):
+            QMessageBox.critical(self, "Error", f"Script file not found: {script_path}")
+            return
+
         self.txtOutput.clear()
 
-        # Create a QProcess object
         self.process = QProcess(self)
-
-        # Connect the process output to the slot that will update the text box
         self.process.readyReadStandardOutput.connect(self.on_ready_read_standard_output)
         self.process.readyReadStandardError.connect(self.on_ready_read_standard_error)
 
-        # Start the process
-        self.process.start(sys.executable, [script_path])
+        try:
+            print(f"Running script: {script_path}")
+            self.process.start(sys.executable, [script_path])
+            if not self.process.waitForStarted(5000):
+                QMessageBox.critical(self, "Error", "Failed to start the script process.")
+                return
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to start process: {e}")
+            return
+
 
     def on_ready_read_standard_output(self):
         # Read the standard output and append it to the text box with white color
