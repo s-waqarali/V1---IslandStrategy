@@ -1,0 +1,5 @@
+pyinstaller main.py --onefile --windowed --name "NTS ToolBox" --add-data "main.ui;." --add-data "island.py;." --add-data "config.py;." --add-data "liveIBKR.py;." --add-data "simulation.py;." --add-data "utilFunction.py;." --icon=favicon.ico --add-data "favicon.ico;."
+
+Creds:
+laila463
+balling1993

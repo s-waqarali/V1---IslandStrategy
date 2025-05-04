@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Wanderson M. Pimenta</author>
- <class>MainWindow</class>
+ <author>HakamTechSol</author>
+  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
@@ -18,7 +18,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>NTS ToolBox</string>
   </property>
   <widget class="QWidget" name="styleSheet">
    <property name="font">
@@ -42,6 +42,10 @@ QWidget {
 
 QSpinBox {
 background-color: #21252b;
+}
+
+QTimeEdit {
+    background-color: #21252b;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -700,7 +704,7 @@ Button */
                    </font>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#4673c6;&quot;&gt;Trading&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffffff;&quot;&gt;Bot&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt; - Take Your Business To New Heights&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#4673c6;&quot;&gt;NTS&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffffff;&quot;&gt;Toolbox&lt;/span&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt; - Filtering Signal from Noise&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1005,7 +1009,7 @@ Button */
                             <item>
                              <widget class="QLabel" name="label_92">
                               <property name="text">
-                               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;Select File to run&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;SELECT STRATEGY&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                               </property>
                              </widget>
                             </item>
@@ -1051,11 +1055,11 @@ Button */
                                         <string notr="true">color:white;</string>
                                        </property>
                                        <property name="text">
-                                        <string>island.py</string>
+                                        <string>Island Long</string>
                                        </property>
                                       </widget>
                                      </item>
-                                     <item>
+                                     <!-- <item>
                                       <widget class="QRadioButton" name="rdLiveIBKR">
                                        <property name="styleSheet">
                                         <string notr="true">color:white;</string>
@@ -1064,7 +1068,7 @@ Button */
                                         <string>liveIBKR.py</string>
                                        </property>
                                       </widget>
-                                     </item>
+                                     </item> -->
                                     </layout>
                                    </widget>
                                   </item>
@@ -1170,9 +1174,25 @@ background-color:#4673c6;
                                <string notr="true">color: rgb(255, 255, 255);</string>
                               </property>
                               <property name="title">
-                               <string>IBKR Connect</string>
+                               <string>Connect</string>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
+                              <item>
+                                <widget class="QWidget" name="widget" native="true">
+                                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                                  <item>
+                                   <widget class="QLabel" name="label">
+                                    <property name="text">
+                                     <string>Liscense Key</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <widget class="QLineEdit" name="lineEdit_licenseKey"/>
+                                  </item>
+                                 </layout>
+                                </widget>
+                               </item>
                                <item>
                                 <widget class="QWidget" name="widget" native="true">
                                  <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -1224,7 +1244,7 @@ background-color:#4673c6;
                               </layout>
                              </widget>
                             </item>
-                            <item>
+                            <!-- <item>
                              <widget class="QGroupBox" name="groupBox_2">
                               <property name="maximumSize">
                                <size>
@@ -1515,7 +1535,7 @@ background-color:#4673c6;
                                </item>
                               </layout>
                              </widget>
-                            </item>
+                            </item> -->
                             <item>
                              <widget class="QGroupBox" name="groupBox_6">
                               <property name="maximumSize">
@@ -1537,7 +1557,7 @@ background-color:#4673c6;
                                   <item>
                                    <widget class="QLabel" name="label_27">
                                     <property name="text">
-                                     <string>Cash</string>
+                                     <string>Allocation</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -1557,7 +1577,7 @@ background-color:#4673c6;
                                   <item>
                                    <widget class="QLabel" name="label_28">
                                     <property name="text">
-                                     <string>Can Trade Upto</string>
+                                     <string>Max Trades</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -1568,26 +1588,36 @@ background-color:#4673c6;
                                     </property>
                                    </widget>
                                   </item>
-                                 </layout>
+                                 </layout>                             
                                 </widget>
                                </item>
                                <item>
                                 <widget class="QWidget" name="widget_29" native="true">
                                  <layout class="QHBoxLayout" name="horizontalLayout_39">
                                   <item>
-                                   <widget class="QLabel" name="label_29">
-                                    <property name="text">
-                                     <string>Time Interval</string>
-                                    </property>
-                                   </widget>
-                                  </item>
-                                  <item>
-                                   <widget class="QLineEdit" name="txtTimeInterval"/>
-                                  </item>
+                                      <widget class="QRadioButton" name="rdAutoStart">
+                                       <property name="styleSheet">
+                                        <string notr="true">color:white;</string>
+                                       </property>
+                                       <property name="text">
+                                        <string>Auto Start</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    <item>
+                                        <widget class="QTimeEdit" name="txtAutoStart">
+                                        <property name="displayFormat">
+                                        <string>hh:mm AP</string>
+                                        </property>
+                                        <property name="styleSheet">
+                                        <string notr="true">color:white;</string>
+                                        </property>
+                                        </widget>   
+                                    </item>
                                  </layout>
                                 </widget>
                                </item>
-                               <item>
+                              <!--  <item>
                                 <widget class="QWidget" name="widget_30" native="true">
                                  <layout class="QHBoxLayout" name="horizontalLayout_40">
                                   <item>
@@ -1602,67 +1632,11 @@ background-color:#4673c6;
                                   </item>
                                  </layout>
                                 </widget>
-                               </item>
+                               </item> -->
                               </layout>
                              </widget>
                             </item>
-                           </layout>
-                          </widget>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="frame_90">
-                        <property name="styleSheet">
-                         <string notr="true">#frame_3
-{
-	background-color: #1a1c1e;
-}</string>
-                        </property>
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QHBoxLayout" name="horizontalLayout_20">
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QGroupBox" name="groupBox_7">
-                           <property name="styleSheet">
-                            <string notr="true">color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="title">
-                            <string>Output</string>
-                           </property>
-                           <layout class="QVBoxLayout" name="verticalLayout_11">
-                            <item>
-                             <widget class="QTextEdit" name="txtOutput">
-                              <property name="maximumSize">
-                               <size>
-                                <width>16777215</width>
-                                <height>16777215</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color:#21252b;
-color: rgb(255, 255, 255);</string>
-                              </property>
-                              <property name="readOnly">
-                               <bool>true</bool>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                         <item>
+                                                     <item>
                           <widget class="QGroupBox" name="groupBox_3">
                            <property name="minimumSize">
                             <size>
@@ -1934,6 +1908,62 @@ color: rgb(255, 255, 255);</string>
                                 </widget>
                                </item>
                               </layout>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                           </layout>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_90">
+                        <property name="styleSheet">
+                         <string notr="true">#frame_3
+{
+	background-color: #1a1c1e;
+}</string>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_20">
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QGroupBox" name="groupBox_7">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="title">
+                            <string>Output</string>
+                           </property>
+                           <layout class="QVBoxLayout" name="verticalLayout_11">
+                            <item>
+                             <widget class="QTextEdit" name="txtOutput">
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color:#21252b;
+color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
+                              </property>
                              </widget>
                             </item>
                            </layout>

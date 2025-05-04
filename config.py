@@ -30,6 +30,4 @@ folder_name = 'Strategy_Directory'
 # IBKR connect
 ib_config = {'port': 7400, 'ip': '127.0.0.1', 'clientId': 999}
 
-# License Key
-license_key = "92TRXH8Q"
 
